@@ -50,6 +50,10 @@ JNIEXPORT void JNICALL Java_Hello_jniLoadObject(JNIEnv* env, jobject self, jobje
     std::cout << "good" << std::endl;
     jobjectArray fieldArray =static_cast<jobjectArray>(env->CallObjectMethod(clsObj, mid));
     std::cout << "bad" << std::endl;
+    mid = env->GetMethodID(jcls, "getDeclaredMethods", "()[Ljava/lang/reflect/Method;");
+    jobjectArray methodArray =static_cast<jobjectArray>(env->CallObjectMethod(clsObj, mid));
+    std::cout << "good" << std::endl;
+
     jint i;
 
     jint count = env->GetArrayLength(fieldArray);
@@ -64,4 +68,16 @@ JNIEXPORT void JNICALL Java_Hello_jniLoadObject(JNIEnv* env, jobject self, jobje
 	env->ReleaseStringUTFChars(fieldName, str2);
     }
 
+   count = env->GetArrayLength(methodArray);
+    for(i=0; i< count; i++){
+        jobject jo = (env->GetObjectArrayElement(methodArray,i));
+	jclass jcls2 = env->GetObjectClass(jo);
+        jmethodID md = env->GetMethodID(jcls2, "getName", "()Ljava/lang/String;");
+	jstring fieldName = static_cast<jstring>(env->CallObjectMethod(jo,md));
+	const char* str2 = env->GetStringUTFChars(fieldName, NULL);
+	std::cout << "Method Name:" << str2 << std::endl;
+	env->ReleaseStringUTFChars(fieldName, str2);
+    }
+
+    
 }

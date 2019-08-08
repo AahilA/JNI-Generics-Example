@@ -31,5 +31,8 @@ class Test{
     void Peter(){
         System.out.println("Hello From Test");
     }
+    void Aahil(){
+	System.out.println("Hello from Aahil");
+    }
 }
 
