@@ -39,6 +39,14 @@ JNIEXPORT void JNICALL Java_Hello_jniSayClass
 JNIEXPORT void JNICALL Java_Hello_jniLoadObject
   (JNIEnv *, jobject, jobject);
 
+/*
+ * Class:     Hello
+ * Method:    varFun
+ * Signature: ([Ljava/lang/Object;)V
+ */
+JNIEXPORT void JNICALL Java_Hello_varFun
+  (JNIEnv *, jobject, jobjectArray);
+
 #ifdef __cplusplus
 }
 #endif

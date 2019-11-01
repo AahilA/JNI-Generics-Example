@@ -3,6 +3,7 @@ public class Hello {
     private native void jniSayHello(int a);
     private native <T> void jniSayClass(T t); 
     private native <T> void jniLoadObject(T t);
+    private native void varFun(Object ...o);
 
     static {
 	try{
